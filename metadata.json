@@ -1,0 +1,6 @@
+{
+  "name": "Dj Vocal Adda",
+  "description": "Premium DJ voice generation platform with user panel, admin panel, Gemini AI enhancement, and custom Text-To-Speech vocals.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

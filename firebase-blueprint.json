@@ -1,0 +1,72 @@
+{
+  "entities": {
+    "user": {
+      "title": "User Profile",
+      "description": "User profile with role and subscription details",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "admin"] },
+        "subscriptionStatus": { "type": "string", "enum": ["Active", "Pending", "Expired", "None"] },
+        "subscriptionExpiry": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["email", "displayName", "role", "subscriptionStatus"]
+    },
+    "vocalRequest": {
+      "title": "Vocal Generation Request",
+      "description": "A single vocal request submitted by a user and processed by admin",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "djName": { "type": "string" },
+        "userText": { "type": "string" },
+        "voiceType": { "type": "string", "enum": ["male", "female"] },
+        "status": { "type": "string", "enum": ["Pending", "Approved", "Processing", "Completed", "Rejected"] },
+        "createdAt": { "type": "string" },
+        "enhancedText": { "type": "string" },
+        "audioUrl": { "type": "string" }
+      },
+      "required": ["userId", "userName", "djName", "userText", "voiceType", "status", "createdAt"]
+    },
+    "systemSetting": {
+      "title": "System Setting",
+      "description": "Global settings like system prompts",
+      "type": "object",
+      "properties": {
+        "systemPrompt": { "type": "string" }
+      },
+      "required": ["systemPrompt"]
+    },
+    "supportLink": {
+      "title": "Support Link",
+      "description": "Contact link displayed to the user",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "url": { "type": "string" }
+      },
+      "required": ["title", "url"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "user",
+      "description": "Collection of user profiles"
+    },
+    "/requests/{requestId}": {
+      "schema": "vocalRequest",
+      "description": "Collection of vocal requests"
+    },
+    "/settings/{settingId}": {
+      "schema": "systemSetting",
+      "description": "Collection of global system settings"
+    },
+    "/support_links/{linkId}": {
+      "schema": "supportLink",
+      "description": "Collection of support links managed by admin"
+    }
+  }
+}
